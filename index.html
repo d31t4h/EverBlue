@@ -1,5 +1,4 @@
-
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
@@ -9,38 +8,44 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #b3e0ff;
+      background-color: #d9f0ff;
       color: #222;
     }
+
     header {
-      background-color: #004080;
+      background-color: #7dbbe6;
       color: white;
       padding: 1.5rem;
       text-align: center;
-      border-bottom-left-radius: 15px;
-      border-bottom-right-radius: 15px;
+      font-size: 1.5rem;
+      border-radius: 0;
     }
+
     nav {
-      background-color: #003060;
-      padding: 1rem;
       display: flex;
-      gap: 1.5rem;
       justify-content: center;
-      border-radius: 0 0 15px 15px;
+      background-color: #b3d9f2;
+      border-bottom: 1px solid #ccc;
     }
+
     nav a {
-      color: white;
+      color: #003366;
       text-decoration: none;
       font-weight: bold;
+      padding: 1rem 2rem;
       cursor: pointer;
-      padding: 0.5rem 1rem;
-      border-radius: 10px;
-      background-color: #004080;
-      transition: background-color 0.3s;
+      background: none;
+      border-right: 1px solid #ccc;
     }
+
+    nav a:last-child {
+      border-right: none;
+    }
+
     nav a:hover {
-      background-color: #0059b3;
+      background-color: #d0e9f9;
     }
+
     .section {
       display: none;
       padding: 2rem;
@@ -50,93 +55,82 @@
       border-radius: 20px;
       box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
+
     .section.active {
       display: block;
     }
+
     h2 {
-      border-bottom: 2px solid #004080;
+      border-bottom: 2px solid #7dbbe6;
       padding-bottom: 0.3rem;
     }
+
     footer {
-      background-color: #eee;
-      padding: 1rem;
       text-align: center;
+      color: #777;
       font-size: 0.9rem;
-      color: #555;
-      margin-top: 2rem;
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
+      padding: 2rem 0 1rem;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>에버블루 리조트</h1>
-    <p>가장 푸르고, 가장 자유로운 공간</p>
-  </header>
 
-  <nav>
-    <a onclick="showSection('intro')">소개</a>
-    <a onclick="showSection('roles')">역할</a>
-    <a onclick="showSection('rules')">규칙</a>
-    <a onclick="showSection('staff')">운영진</a>
-  </nav>
+<header>❃『에버블루 리조트』🐬</header>
 
-  <section class="section active" id="intro">
-    <h2>소개</h2>
-    <p>
-      에버블루 리조트는 디스코드 기반의 가상 리조트 커뮤니티입니다.<br>
-      사용자 친화적 구조와 편리한 역할 시스템, 그리고 다양한 부서로 구성되어 있습니다.
-    </p>
-  </section>
+<nav>
+  <a onclick="showSection('intro')">소개</a>
+  <a onclick="showSection('roles')">역할</a>
+  <a onclick="showSection('rules')">규칙</a>
+  <a onclick="showSection('staff')">운영진</a>
+</nav>
 
-  <section class="section" id="roles">
-    <h2>역할</h2>
-    <ul>
-      <li><strong>총지배인</strong> - 리조트 최고 관리자</li>
-      <li><strong>편집부</strong> - 공식 문서 및 알림 작성</li>
-      <li><strong>지배인 / 지배인 후보</strong> - 각 부서 운영 담당</li>
-      <li><strong>카운터 직원</strong> - 고객 응대 및 체크인</li>
-      <li><strong>보안요원</strong> - 규칙 유지 및 질서 관리</li>
-    </ul>
-  </section>
+<section id="intro" class="section active">
+  <h2>소개</h2>
+  <p>에버블루 리조트는 모두가 편하게 쉴 수 있는 자유로운 공간입니다. 다양한 활동과 역할이 준비되어 있으며, 모두가 서로를 존중하며 즐겁게 활동할 수 있는 커뮤니티를 지향합니다.</p>
+</section>
 
-  <section class="section" id="rules">
-    <h2>에버블루 리조트 이용 안내</h2>
-    <ol>
-      <li>물타기 금지<br><small>과도한 물타기는 불편하는 사람이 생겨요</small></li>
-      <li>비속어 일베 금지<br><small>비속어는 당연히 금지겠죠?</small></li>
-      <li>닉네임이나 프로필 사진 주의<br><small>어린 애들도 있으니 야한 사진이나 이름으로 닉네임을 하지 말아주세요!</small></li>
-      <li>정치 발언이나 사진 동영상 금지<br><small>역시 이건 ■■■ 때문이다 등의 발언은 절대 금지! 관리자들이 확인할거에요</small></li>
-      <li>뒷메 앞메 금지<br><small>홍보 채널 말곤 앞메는 금지! 뒷메도 절대 금지!</small></li>
-      <li>도배 금지!<br><small>도배는 같은 단어 5회 이상이지만 관리자 판단 후 정확한 처벌 정해짐!</small></li>
-      <li>규칙 어길시 경고!<br><small>최대 타임아웃 추방!!</small></li>
-      <li>관리진 말에 따르기!<br><small>지배인들 말은 잘 들어주세요</small></li>
-      <li>홍보 채널 외 홍보 금지<br><small>서버 미관상 홍보 채널에서만 해줘!</small></li>
-      <li>봇 채널 외 봇 사용 금지<br><small>이것도 미관상의 이유에요!</small></li>
-    </ol>
-  </section>
+<section id="roles" class="section">
+  <h2>역할</h2>
+  <p>각 역할에 따라 서버 운영 및 다양한 업무가 이루어지며, 체계적으로 역할을 분담하고 협력합니다.</p>
+</section>
 
-  <section class="section" id="staff">
-    <h2>운영진</h2>
-    <ul>
-      <li><strong>총지배인</strong> - 소라게</li>
-      <li><strong>지배인 [편집부장]</strong> - 델타</li>
-      <li><strong>지배인 [보안팀장]</strong> - 텅그리</li>
-      <li><strong>지배인 [고객 응대팀장]</strong> - 인프</li>
-    </ul>
-  </section>
+<section id="rules" class="section">
+  <h2>에버블루 리조트 이용 안내</h2>
+  <ol>
+    <li><strong>물타기 금지</strong><br>과도한 물타기는 불편한 사람이 생겨요</li><br>
+    <li><strong>비속어 일베 금지</strong><br>비속어는 당연히 금지겠죠?</li><br>
+    <li><strong>닉네임이나 프로필 사진 주의</strong><br>야한 사진이나 이름 사용 금지!</li><br>
+    <li><strong>정치 발언 금지</strong><br>정치 관련 발언 및 사진 금지!</li><br>
+    <li><strong>뒷메 앞메 금지</strong><br>홍보 채널 외 메세지 금지!</li><br>
+    <li><strong>도배 금지</strong><br>같은 말 5번 이상 반복 금지!</li><br>
+    <li><strong>규칙 위반시 경고!</strong><br>최대 타임아웃 또는 추방</li><br>
+    <li><strong>관리진 말에 따르기</strong><br>지배인들 말 잘 들어!</li><br>
+    <li><strong>홍보는 홍보 채널만</strong><br>미관상 홍보 채널만 이용</li><br>
+    <li><strong>봇 채널 외 봇 금지</strong><br>미관상의 이유로 금지!</li>
+  </ol>
+</section>
 
-  <footer>
-    &copy; 2025 에버블루 리조트
-  </footer>
+<section id="staff" class="section">
+  <h2>운영진</h2>
+  <ul>
+    <li><strong>총 지배인</strong> - 소라게</li>
+    <li><strong>지배인 [편집부장]</strong> - 델타</li>
+    <li><strong>지배인 [보안팀장]</strong> - 텅그리</li>
+    <li><strong>지배인 [고객 응대팀장]</strong> - 인프</li>
+  </ul>
+</section>
 
-  <script>
-    function showSection(id) {
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(sec => sec.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
-  </script>
+<footer>
+  © 2025 에버블루 리조트
+</footer>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+</script>
+
 </body>
 </html>
+
