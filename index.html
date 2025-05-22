@@ -1,15 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>에버블루 리조트</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Pretendard', sans-serif;
-      background: linear-gradient(to bottom, #b3e0ff, #ffffff);
+      font-family: Arial, sans-serif;
+      background-color: #b3e0ff;
       color: #222;
     }
     header {
@@ -18,14 +17,26 @@
       padding: 1.5rem;
       text-align: center;
     }
+    nav {
+      background-color: #003060;
+      padding: 1rem;
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
     .section {
       padding: 2rem;
       max-width: 800px;
       margin: auto;
     }
-    .highlight {
-      color: #5e3eff;
-      font-weight: bold;
+    h2 {
+      border-bottom: 2px solid #004080;
+      padding-bottom: 0.3rem;
     }
     footer {
       background-color: #eee;
@@ -41,15 +52,24 @@
     <h1>에버블루 리조트</h1>
     <p>가장 푸르고, 가장 자유로운 공간</p>
   </header>
-  <section class="section">
+
+  <nav>
+    <a href="#intro">소개</a>
+    <a href="#roles">역할</a>
+    <a href="#rules">규칙</a>
+    <a href="#staff">운영진</a>
+  </nav>
+
+  <section class="section" id="intro">
     <h2>소개</h2>
     <p>
-      <span class="highlight">에버블루 리조트</span>는 디스코드 기반의 가상 리조트 커뮤니티입니다.<br>
-      사용자 친화적 구조와 편리한 역할 시스템, 그리고 다양한 부서로 구성된 <strong>RP형 리조트</strong>입니다.
+      에버블루 리조트는 디스코드 기반의 가상 리조트 커뮤니티입니다.<br>
+      사용자 친화적 구조와 편리한 역할 시스템, 그리고 다양한 부서로 구성되어 있습니다.
     </p>
   </section>
-  <section class="section">
-    <h2>조직 구조</h2>
+
+  <section class="section" id="roles">
+    <h2>역할</h2>
     <ul>
       <li><strong>총지배인</strong> - 리조트 최고 관리자</li>
       <li><strong>편집부</strong> - 공식 문서 및 알림 작성</li>
@@ -58,16 +78,35 @@
       <li><strong>보안요원</strong> - 규칙 유지 및 질서 관리</li>
     </ul>
   </section>
-  <section class="section">
-    <h2>특징</h2>
+
+  <section class="section" id="rules">
+    <h2>에버블루 리조트 이용 안내</h2>
+    <ol>
+      <li>물타기 금지<br><small>과도한 물타기는 불편하는 사람이 생겨요</small></li>
+      <li>비속어 일베 금지<br><small>비속어는 당연히 금지겠죠?</small></li>
+      <li>닉네임이나 프로필 사진 주의<br><small>어린 애들도 있으니 야한 사진이나 이름으로 닉네임을 하지 말아주세요!</small></li>
+      <li>정치 발언이나 사진 동영상 금지<br><small>역시 이건 ■■■ 때문이다 등의 발언은 절대 금지! 관리자들이 확인할거에요</small></li>
+      <li>뒷메 앞메 금지<br><small>홍보 채널 말곤 앞메는 금지! 뒷메도 절대 금지!</small></li>
+      <li>도배 금지!<br><small>도배는 같은 단어 5회 이상이지만 관리자 판단 후 정확한 처벌 정해짐!</small></li>
+      <li>규칙 어길시 경고!<br><small>최대 타임아웃 추방!!</small></li>
+      <li>관리진 말에 따르기!<br><small>지배인들 말은 잘 들어주세요</small></li>
+      <li>홍보 채널 외 홍보 금지<br><small>서버 미관상 홍보 채널에서만 해줘!</small></li>
+      <li>봇 채널 외 봇 사용 금지<br><small>이것도 미관상의 이유에요!</small></li>
+    </ol>
+  </section>
+
+  <section class="section" id="staff">
+    <h2>운영진</h2>
     <ul>
-      <li>자유로운 RP 환경 제공</li>
-      <li>정기적인 이벤트 및 소통 활동</li>
-      <li>체계적인 역할 시스템</li>
+      <li><strong>총지배인</strong> - 소라게</li>
+      <li><strong>지배인 [편집부장]</strong> - 델타</li>
+      <li><strong>지배인 [보안팀장]</strong> - 텅그리</li>
+      <li><strong>지배인 [고객 응대팀장]</strong> - 인프</li>
     </ul>
   </section>
+
   <footer>
-    &copy; 2025 에버블루 리조트. 모두의 바다가 되어줄게.
+    &copy; 2025 에버블루 리조트
   </footer>
 </body>
 </html>
