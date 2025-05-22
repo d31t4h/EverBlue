@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+  <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
@@ -16,6 +17,8 @@
       color: white;
       padding: 1.5rem;
       text-align: center;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
     }
     nav {
       background-color: #003060;
@@ -23,16 +26,32 @@
       display: flex;
       gap: 1.5rem;
       justify-content: center;
+      border-radius: 0 0 15px 15px;
     }
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      background-color: #004080;
+      transition: background-color 0.3s;
+    }
+    nav a:hover {
+      background-color: #0059b3;
     }
     .section {
+      display: none;
       padding: 2rem;
       max-width: 800px;
-      margin: auto;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .section.active {
+      display: block;
     }
     h2 {
       border-bottom: 2px solid #004080;
@@ -44,6 +63,9 @@
       text-align: center;
       font-size: 0.9rem;
       color: #555;
+      margin-top: 2rem;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
     }
   </style>
 </head>
@@ -54,13 +76,13 @@
   </header>
 
   <nav>
-    <a href="#intro">소개</a>
-    <a href="#roles">역할</a>
-    <a href="#rules">규칙</a>
-    <a href="#staff">운영진</a>
+    <a onclick="showSection('intro')">소개</a>
+    <a onclick="showSection('roles')">역할</a>
+    <a onclick="showSection('rules')">규칙</a>
+    <a onclick="showSection('staff')">운영진</a>
   </nav>
 
-  <section class="section" id="intro">
+  <section class="section active" id="intro">
     <h2>소개</h2>
     <p>
       에버블루 리조트는 디스코드 기반의 가상 리조트 커뮤니티입니다.<br>
@@ -108,5 +130,13 @@
   <footer>
     &copy; 2025 에버블루 리조트
   </footer>
+
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
 </body>
 </html>
