@@ -6,25 +6,32 @@
   <title>에버블루 리조트</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #d9f0ff;
-      color: #222;
+      background-color: #eaf6fb;
+      margin: 0;
+      padding: 0;
+      color: #002244;
     }
 
     header {
-      background-color: #7dbbe6;
-      color: white;
-      padding: 1.5rem;
+      background-color: #b3d9f2;
+      padding: 1rem;
       text-align: center;
-      font-size: 1.5rem;
-      border-radius: 0;
+      border-radius: 20px 20px 0 0;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: bold;
     }
 
     nav {
       display: flex;
       justify-content: center;
       background-color: #b3d9f2;
+      padding: 0.5rem 0;
+      border-top: 1px solid #ccc;
       border-bottom: 1px solid #ccc;
     }
 
@@ -32,105 +39,122 @@
       color: #003366;
       text-decoration: none;
       font-weight: bold;
-      padding: 1rem 2rem;
+      padding: 1rem 1.5rem;
       cursor: pointer;
-      background: none;
-      border-right: 1px solid #ccc;
+      position: relative;
     }
 
-    nav a:last-child {
-      border-right: none;
+    nav a:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 30%;
+      height: 40%;
+      width: 1px;
+      background-color: #ccc;
     }
 
     nav a:hover {
       background-color: #d0e9f9;
     }
 
-    .section {
+    section {
       display: none;
-      padding: 2rem;
-      max-width: 800px;
-      margin: 2rem auto;
-      background: white;
+      padding: 1.5rem;
       border-radius: 20px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      background-color: #ffffff;
+      margin: 1rem auto;
+      max-width: 800px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
-    .section.active {
+    section.active {
       display: block;
     }
 
     h2 {
       border-bottom: 2px solid #7dbbe6;
       padding-bottom: 0.3rem;
+      font-weight: bold;
+      font-size: 1.6rem;
+    }
+
+    li strong, section p strong {
+      font-weight: bold;
+      color: #002244;
     }
 
     footer {
       text-align: center;
-      color: #777;
       font-size: 0.9rem;
-      padding: 2rem 0 1rem;
+      padding: 1rem;
+      color: #555;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>❃『에버블루 리조트』🐬</h1>
+  </header>
 
-<header>❃『에버블루 리조트』🐬</header>
+  <nav>
+    <a onclick="showSection('intro')">소개</a>
+    <a onclick="showSection('roles')">역할</a>
+    <a onclick="showSection('rules')">규칙</a>
+    <a onclick="showSection('staff')">운영진</a>
+  </nav>
 
-<nav>
-  <a onclick="showSection('intro')">소개</a>
-  <a onclick="showSection('roles')">역할</a>
-  <a onclick="showSection('rules')">규칙</a>
-  <a onclick="showSection('staff')">운영진</a>
-</nav>
+  <section id="intro" class="active">
+    <h2>서버 소개</h2>
+    <p>편안한 분위기에서 자유롭게 소통할 수 있는 공간, <strong>에버블루 리조트</strong>입니다. 다양한 활동과 이벤트를 통해 모두가 함께할 수 있는 리조트를 지향합니다.</p>
+  </section>
 
-<section id="intro" class="section active">
-  <h2>소개</h2>
-  <p>에버블루 리조트는 모두가 편하게 쉴 수 있는 자유로운 공간입니다. 다양한 활동과 역할이 준비되어 있으며, 모두가 서로를 존중하며 즐겁게 활동할 수 있는 커뮤니티를 지향합니다.</p>
-</section>
+  <section id="roles">
+    <h2>역할 소개</h2>
+    <ul>
+      <li><strong>총지배인</strong> - 리조트 최고 관리자</li>
+      <li><strong>편집부 </strong> - 문서 작성, 기사 검수</li>
+      <li><strong>지배인 </strong> - 리조트 내 관리자</li>
+      <li><strong>카운터 직원</strong> - 이용자 응대 및 상담</li>
+      <li><strong>보안요원</strong> - 채팅 감시 및 비매너 행위 제지</li>
+    </ul>
+  </section>
 
-<section id="roles" class="section">
-  <h2>역할</h2>
-  <p>각 역할에 따라 서버 운영 및 다양한 업무가 이루어지며, 체계적으로 역할을 분담하고 협력합니다.</p>
-</section>
+  <section id="rules">
+    <h2>에버블루 리조트 이용 안내</h2>
+    <ol>
+      <li><strong>물타기 금지</strong><br/>과도한 물타기는 불편하는 사람이 생겨요</li>
+      <li><strong>비속어, 일베 금지</strong><br/>비속어는 당연히 금지겠죠?</li>
+      <li><strong>닉네임이나 프로필 사진 주의</strong><br/>야한 사진이나 이름은 하지 말아주세요!</li>
+      <li><strong>정치 발언 및 사진/동영상 금지</strong><br/>“■■■ 때문이다” 같은 발언은 절대 금지!</li>
+      <li><strong>뒷메/앞메 금지</strong><br/>홍보 채널 제외 모두 금지!</li>
+      <li><strong>도배 금지</strong><br/>같은 단어 5회 이상! (판단은 관리자)</li>
+      <li><strong>규칙 위반 시 경고</strong><br/>최대 타임아웃~추방까지!</li>
+      <li><strong>관리진 말에 따르기</strong><br/>지배인들 말은 잘 들으셈</li>
+      <li><strong>홍보 채널 외 홍보 금지</strong><br/>서버 미관상 안 돼요!</li>
+      <li><strong>봇 채널 외 봇 사용 금지</strong><br/>이것도 깔끔하게!</li>
+    </ol>
+  </section>
 
-<section id="rules" class="section">
-  <h2>에버블루 리조트 이용 안내</h2>
-  <ol>
-    <li><strong>물타기 금지</strong><br>과도한 물타기는 불편한 사람이 생겨요</li><br>
-    <li><strong>비속어 일베 금지</strong><br>비속어는 당연히 금지겠죠?</li><br>
-    <li><strong>닉네임이나 프로필 사진 주의</strong><br>야한 사진이나 이름 사용 금지!</li><br>
-    <li><strong>정치 발언 금지</strong><br>정치 관련 발언 및 사진 금지!</li><br>
-    <li><strong>뒷메 앞메 금지</strong><br>홍보 채널 외 메세지 금지!</li><br>
-    <li><strong>도배 금지</strong><br>같은 말 5번 이상 반복 금지!</li><br>
-    <li><strong>규칙 위반시 경고!</strong><br>최대 타임아웃 또는 추방</li><br>
-    <li><strong>관리진 말에 따르기</strong><br>지배인들 말 잘 들어!</li><br>
-    <li><strong>홍보는 홍보 채널만</strong><br>미관상 홍보 채널만 이용</li><br>
-    <li><strong>봇 채널 외 봇 금지</strong><br>미관상의 이유로 금지!</li>
-  </ol>
-</section>
+  <section id="staff">
+    <h2>운영진</h2>
+    <ul>
+      <li><strong>총지배인:</strong> 소라게</li>
+      <li><strong>지배인 [편집부장]:</strong> 델타</li>
+      <li><strong>지배인 [보안팀장]:</strong> 텅그리</li>
+      <li><strong>지배인 [고객 응대팀장]:</strong> 인프</li>
+    </ul>
+  </section>
 
-<section id="staff" class="section">
-  <h2>운영진</h2>
-  <ul>
-    <li><strong>총 지배인</strong> - 소라게</li>
-    <li><strong>지배인 [편집부장]</strong> - 델타</li>
-    <li><strong>지배인 [보안팀장]</strong> - 텅그리</li>
-    <li><strong>지배인 [고객 응대팀장]</strong> - 인프</li>
-  </ul>
-</section>
+  <footer>© 2025 에버블루 리조트</footer>
 
-<footer>
-  © 2025 에버블루 리조트
-</footer>
-
-<script>
-  function showSection(id) {
-    document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
-</script>
-
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
 </body>
 </html>
-
