@@ -58,22 +58,26 @@
     }
 
     section {
-  display: none;
+  max-height: 0;
+  overflow: hidden;
   opacity: 0;
   transform: translateX(50px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  padding: 1.5rem;
+  transition: all 0.5s ease;
+  padding: 0 1.5rem;
   border-radius: 20px;
   background-color: #ffffff;
   margin: 1rem auto;
   max-width: 800px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  visibility: hidden;
 }
 
 section.active {
-  display: block;
+  max-height: 1000px;
   opacity: 1;
   transform: translateX(0);
+  padding: 1.5rem;
+  visibility: visible;
 }
 
     h2 {
