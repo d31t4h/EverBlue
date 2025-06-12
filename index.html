@@ -177,16 +177,51 @@
   <footer>© 2025 에버블루 리조트 · DelTaΔ 제작</footer>
 
   <script>
-    function showSection(id) {
-      const sections = document.querySelectorAll('section');
-      sections.forEach(section => {
-        if (section.id === id) {
-          section.classList.add('active');
-        } else {
-          section.classList.remove('active');
+  let lastIndex = 0;
+  const tabs = ['intro', 'roles', 'rules', 'staff'];
+
+  function showSection(id) {
+    const sections = document.querySelectorAll('section');
+    const newIndex = tabs.indexOf(id);
+
+    sections.forEach(section => {
+      if (section.classList.contains('active')) {
+        if (newIndex > lastIndex) {
+          section.style.transform = 'translateX(-50px)';
+          section.style.opacity = '0';
+        } else if (newIndex < lastIndex) {
+          section.style.transform = 'translateX(50px)';
+          section.style.opacity = '0';
         }
-      });
+        section.classList.remove('active');
+        section.style.height = '0';
+        section.style.padding = '0 1.5rem';
+        section.style.transition = 'transform 0.5s ease, opacity 0.5s ease, height 0.5s ease, padding 0.5s ease';
+      }
+    });
+
+    const newSection = document.getElementById(id);
+    if (newIndex > lastIndex) {
+      newSection.style.transform = 'translateX(50px)';
+    } else if (newIndex < lastIndex) {
+      newSection.style.transform = 'translateX(-50px)';
+    } else {
+      newSection.style.transform = 'translateX(0)';
     }
+    newSection.style.opacity = '0';
+    newSection.style.height = 'auto';
+    newSection.style.padding = '1.5rem';
+    newSection.style.transition = 'none';
+
+    requestAnimationFrame(() => {
+      newSection.classList.add('active');
+      newSection.style.transform = 'translateX(0)';
+      newSection.style.opacity = '1';
+      newSection.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+    });
+
+    lastIndex = newIndex;
+  }
   </script>
 </body>
 </html>
