@@ -15,17 +15,36 @@
 
     header {
       background-color: #e8edff;
-      padding: 1.5rem;
+      padding: 1.5rem 1.5rem 1.5rem 1.5rem;
       margin-bottom: -17px;
-      text-align: center;
+      display: flex;             /* flex로 바꿈 */
+      align-items: center;       /* 세로 가운데 정렬 */
+      justify-content: center;   /* 기본은 가운데 정렬 */
+      position: relative;        /* 이미지 위치 잡으려고 */
     }
 
     header h1 {
       margin: 0;
       font-size: 2rem;
       font-weight: bold;
+      flex-grow: 1;             /* h1이 남는 공간 다 차지 */
+      text-align: center;       /* h1 텍스트는 가운데 정렬 */
     }
 
+    header a {
+      position: absolute;
+      right: 15px;              /* 오른쪽 끝에서 15px 떨어지게 */
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    header a img {
+      height: 40px;
+      display: block;
+    }
+
+    /* 이하 기존 스타일 유지 */
     nav {
       display: flex;
       justify-content: center;
@@ -107,6 +126,9 @@
 <body>
   <header>
     <h1>❃『에버블루 리조트』</h1>
+    <a href="https://discord.gg/PkqaS8fdxN" target="_blank" rel="noopener noreferrer">
+      <img src="https://raw.githubusercontent.com/d31t4h/EverBlue/refs/heads/main/0824985df442835b28e17cd8ce2ed2ce.png" alt="에버블루 디스코드" />
+    </a>
   </header>
 
   <nav>
