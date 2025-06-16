@@ -46,34 +46,55 @@
 
     /* 이하 기존 스타일 유지 */
     nav {
-      display: flex;
-      justify-content: center;
-      background-color: #e8edff;
-      border-radius: 0 0 15px 15px;
-    }
+  display: flex;
+  justify-content: center;
+  background-color: #e8edff;
+  border-radius: 0 0 15px 15px;
+}
 
-    nav a {
-      color: #003366;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 1rem 1.5rem;
-      cursor: pointer;
-      position: relative;
-    }
+nav a {
+  color: #003366;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
 
-    nav a:not(:last-child)::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      top: 30%;
-      height: 40%;
-      width: 1px;
-      background-color: #787575;
-    }
+/* 네비게이션 사이에 줄 넣는 거 */
+nav a:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 30%;
+  height: 40%;
+  width: 1px;
+  background-color: #787575;
+}
 
-    nav a:hover {
-      background-color: #d0e9f9;
-    }
+/* 기본 hover 배경 */
+nav a:hover {
+  background-color: #d0e9f9;
+}
+
+/* 밑줄 애니메이션 */
+nav a::before {
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #0055aa;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+nav a:hover::before {
+  width: 60%;
+}
 
     section {
       max-height: 0;
