@@ -163,7 +163,9 @@
 
       <div class="card" style="margin-top:12px">
         <h3>공지</h3>
-        <div class="muted">서버 소개 및 활동 규칙은 디스코드에서 우선 적용됩니다.</div>
+        <textarea id="noticeText" rows="4" style="width:100%;border-radius:12px;padding:8px;border:1px solid rgba(0,0,0,0.06);resize:vertical;"></textarea>
+        <button class="btn" style="margin-top:8px;width:100%" onclick="saveNotice()">공지 저장</button>
+        <div class="muted" id="noticeDisplay" style="margin-top:12px;white-space:pre-wrap;"></div>
       </div>
     </aside>
   </div>
@@ -235,6 +237,22 @@ function randomName(){
 const myName = randomName();
 document.getElementById('myNamePill').textContent = "내 익명명: " + myName;
 
+/* 공지 저장 및 불러오기 */
+function saveNotice(){
+  const txt = document.getElementById('noticeText').value.trim();
+  localStorage.setItem('communityNotice', txt);
+  renderNotice();
+  alert('공지 저장됨');
+}
+
+function renderNotice(){
+  const notice = localStorage.getItem('communityNotice') || '서버 소개 및 활동 규칙은 디스코드에서 우선 적용됩니다.';
+  document.getElementById('noticeDisplay').textContent = notice;
+  document.getElementById('noticeText').value = notice;
+}
+
+// 페이지 로드 시 공지 불러오기
+renderNotice();
 </script>
 </body>
 </html>
