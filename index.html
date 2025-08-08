@@ -163,9 +163,7 @@
 
       <div class="card" style="margin-top:12px">
         <h3>공지</h3>
-        <textarea id="noticeText" rows="4" style="width:100%;border-radius:12px;padding:8px;border:1px solid rgba(0,0,0,0.06);resize:vertical;"></textarea>
-        <button class="btn" style="margin-top:8px;width:100%" onclick="saveNotice()">공지 저장</button>
-        <div class="muted" id="noticeDisplay" style="margin-top:12px;white-space:pre-wrap;"></div>
+        <div class="muted">서버 소개 및 활동 규칙은 디스코드에서 우선 적용됩니다.</div>
       </div>
     </aside>
   </div>
@@ -200,19 +198,33 @@ function scrollToSection(id){
 
 /* 게시판 간단 기능 */
 let posts = JSON.parse(localStorage.getItem('posts')||'[]');
+
+/* 익명명 저장용 */
+const names = ['소라게','껍질','나무껍질','달팽이','숲속요정'];
+function randomName(){
+  return names[Math.floor(Math.random()*names.length)];
+}
+
 function savePosts(){
   localStorage.setItem('posts',JSON.stringify(posts));
 }
+
 function createPost(){
   const title = document.getElementById('postTitle').value.trim();
   const content = document.getElementById('postContent').value.trim();
   if(!title||!content){alert('제목과 내용을 입력해주세요.');return;}
-  posts.unshift({id:Date.now(),title,content,date:new Date().toISOString()});
+
+  /* 익명명도 같이 저장하도록 변경 */
+  const anonName = randomName();
+
+  posts.unshift({id:Date.now(),title,content,date:new Date().toISOString(),anonName});
   savePosts();
   renderPosts();
+
   document.getElementById('postTitle').value="";
   document.getElementById('postContent').value="";
 }
+
 function renderPosts(){
   const container = document.getElementById('posts');
   container.innerHTML="";
@@ -223,36 +235,23 @@ function renderPosts(){
   posts.forEach(p=>{
     const d = document.createElement('div');
     d.className='post';
-    d.innerHTML = `<div class="meta"><strong>${p.title}</strong> <span style="font-size:12px;color:#999">${new Date(p.date).toLocaleString()}</span></div><div class="content">${p.content.replace(/\n/g,'<br>')}</div>`;
+    d.innerHTML = `
+      <div class="meta">
+        <strong>${p.title}</strong> 
+        <span style="font-size:12px;color:#999">${new Date(p.date).toLocaleString()}</span>
+        <span style="font-size:12px;color:#666;margin-left:8px;">익명명: ${p.anonName || '-'}</span>
+      </div>
+      <div class="content">${p.content.replace(/\n/g,'<br>')}</div>
+    `;
     container.appendChild(d);
   });
 }
-renderPosts();
 
-/* 익명명 랜덤 생성 */
-function randomName(){
-  const names = ['소라게','껍질','나무껍질','달팽이','숲속요정'];
-  return names[Math.floor(Math.random()*names.length)];
-}
+/* 내 익명명 표시 */
 const myName = randomName();
 document.getElementById('myNamePill').textContent = "내 익명명: " + myName;
 
-/* 공지 저장 및 불러오기 */
-function saveNotice(){
-  const txt = document.getElementById('noticeText').value.trim();
-  localStorage.setItem('communityNotice', txt);
-  renderNotice();
-  alert('공지 저장됨');
-}
-
-function renderNotice(){
-  const notice = localStorage.getItem('communityNotice') || '서버 소개 및 활동 규칙은 디스코드에서 우선 적용됩니다.';
-  document.getElementById('noticeDisplay').textContent = notice;
-  document.getElementById('noticeText').value = notice;
-}
-
-// 페이지 로드 시 공지 불러오기
-renderNotice();
+renderPosts();
 </script>
 </body>
 </html>
