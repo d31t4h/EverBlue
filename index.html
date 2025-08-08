@@ -131,14 +131,14 @@
       <!-- 동맹 목록 -->
       <section id="allies" class="card" style="margin-top:16px">
         <h2>동맹 목록</h2>
-        <div class="muted">아래는 게시물처럼 보이지만 작성은 불가. 코드 내 데이터로 관리됨.</div>
+        <div class="muted">동맹 신청 또한 이 사이트에서 해주세요!.</div>
         <div class="ally-list" id="allyList" style="margin-top:12px"></div>
       </section>
 
       <!-- 자유게시판 -->
       <section id="board" class="card" style="margin-top:16px">
         <h2>자유게시판</h2>
-        <div class="muted">로그인 필요 없음. 익명으로 작성됩니다. 이름은 '껍데기', '껍데기1' ... 형식.</div>
+        <div class="muted">로그인 필요 없음. 익명으로 작성됩니다.</div>
 
         <div class="post-form" style="margin-top:12px">
           <label class="small">글 제목</label>
@@ -216,7 +216,7 @@
 </div>
 
 <footer>
-  만든이: 나무껍질 서버 · 프론트 데모 (HTML 단일파일). EmailJS 설정하면 신청 이메일 자동 전송됨.
+  © 2025 DelTaΔ · 나무껍질
 </footer>
 
 <script>
@@ -226,10 +226,8 @@
     Service ID, Template ID, Public Key(user ID) 발급받아 아래에 넣어.
   - 템플릿 변수는 templateParams로 전달됨.
 ----------------------------*/
-const EMAILJS_USER_ID = ""; // 예: user_xxx (비워두면 mailto fallback)
-const EMAILJS_SERVICE_ID = ""; // 예: service_xxx
-const EMAILJS_TEMPLATE_ID_ADMIN = ""; // 템플릿 (관리자 신청)
-const EMAILJS_TEMPLATE_ID_ALLY = "";  // 템플릿 (연합 신청)
+const EMAILJS_USER_ID = "a4RvU-2D5dB4uQerM"; // 예: user_xxx (비워두면 mailto fallback)
+const EMAILJS_SERVICE_ID = "service_9crnocf"; // 예: service_xxx
 
 if (window.emailjs && EMAILJS_USER_ID) {
   emailjs.init(EMAILJS_USER_ID);
