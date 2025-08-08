@@ -1,256 +1,464 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>에버블루 리조트</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fafaff;
-      margin: 0;
-      padding: 0;
-      color: #002244;
-    }
-
-    header {
-      background-color: #e8edff;
-      padding: 1.5rem 1.5rem 1.5rem 1.5rem;
-      margin-bottom: -17px;
-      display: flex;             /* flex로 바꿈 */
-      align-items: center;       /* 세로 가운데 정렬 */
-      justify-content: center;   /* 기본은 가운데 정렬 */
-      position: relative;        /* 이미지 위치 잡으려고 */
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-      font-weight: bold;
-      flex-grow: 1;             /* h1이 남는 공간 다 차지 */
-      text-align: center;       /* h1 텍스트는 가운데 정렬 */
-    }
-
-    header a {
-      position: absolute;
-      right: 15px;              /* 오른쪽 끝에서 15px 떨어지게 */
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-    }
-
-    header a img {
-  height: 40px;
-  display: block;
-  transition: transform 0.3s ease; /* 추가된 부분 */
-}
-
-header a:hover img {
-  transform: scale(1.1); /* 마우스 올렸을 때 살짝 커지게 */
-}
-
-    /* 이하 기존 스타일 유지 */
-    nav {
-  display: flex;
-  justify-content: center;
-  background-color: #e8edff;
-  border-radius: 0 0 15px 15px;
-}
-
-nav a {
-  color: #003366;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 1rem 1.5rem;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: background-color 0.3s ease;
-}
-
-/* 네비게이션 사이에 줄 넣는 거 */
-nav a:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 30%;
-  height: 40%;
-  width: 1px;
-  background-color: #787575;
-}
-
-/* 기본 hover 배경 */
-nav a:hover {
-  background-color: #d0e9f9;
-}
-
-/* 밑줄 애니메이션 */
-nav a::before {
-  content: "";
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background-color: #0055aa;
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
-}
-
-nav a:hover::before {
-  width: 60%;
-}
-
-    section {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transform: translateX(50px);
-      transition: all 0.5s ease;
-      padding: 0 1.5rem;
-      border-radius: 20px;
-      background-color: #ffffff;
-      margin: 1rem auto;
-      max-width: 800px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      visibility: hidden;
-    }
-
-    section.active {
-      max-height: 1000px;
-      opacity: 1;
-      transform: translateX(0);
-      padding: 1.5rem;
-      visibility: visible;
-    }
-
-    h2 {
-      border-bottom: 2px solid #7dbbe6;
-      padding-bottom: 0.3rem;
-      font-weight: bold;
-      font-size: 1.6rem;
-      margin-top: 0;
-    }
-
-    li {
-      margin-bottom: 0.5rem;
-    }
-
-    li strong, section p strong {
-      font-weight: bold;
-      color: #002244;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      padding: 1rem;
-      color: #555;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>나무껍질 - 커뮤니티</title>
+<!-- EmailJS SDK (optional) -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<style>
+  :root{
+    --bg:#FAF7F2; --card:#fff; --accent:#9CA27B; --muted:#7b7b7b;
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter, "Noto Sans KR", system-ui, sans-serif;background:linear-gradient(180deg,#fbf9f6, #f2efe6);color:#222}
+  header{position:sticky;top:0;background:rgba(255,255,255,0.8);backdrop-filter:blur(6px);z-index:10;border-bottom:1px solid rgba(0,0,0,0.05)}
+  .nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px}
+  .brand{display:flex;gap:12px;align-items:center}
+  .logo{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#d6c89b,#b98c5a);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+  nav .links{display:flex;gap:10px}
+  .btn{background:var(--accent);color:white;padding:8px 12px;border-radius:12px;border:0;cursor:pointer;transition:transform .15s ease;box-shadow:0 6px 18px rgba(156,162,123,0.14)}
+  .btn:active{transform:translateY(1px)}
+  main{max-width:1100px;margin:22px auto;padding:0 16px}
+  .grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+  .card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 6px 20px rgba(30,30,30,0.06);animation:fadeIn .35s ease;overflow:hidden}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  h2{margin:0 0 8px 0}
+  .muted{color:var(--muted);font-size:13px}
+  /* list cards */
+  .ally-list{display:grid;gap:10px}
+  .ally{display:flex;gap:12px;align-items:center;padding:10px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfbfb);border:1px solid rgba(0,0,0,0.03)}
+  .ally img{width:46px;height:46px;border-radius:10px;object-fit:cover}
+  .ally .meta{flex:1}
+  .small{font-size:13px;color:var(--muted)}
+  /* 게시판 */
+  .post-form textarea{width:100%;min-height:80px;padding:10px;border-radius:12px;border:1px solid rgba(0,0,0,0.06);resize:vertical}
+  .posts{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+  .post{padding:12px;border-radius:12px;border:1px solid rgba(0,0,0,0.04);background:#fff}
+  .post .meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .post .content{white-space:pre-wrap}
+  .comments{margin-top:8px;padding-left:10px;display:flex;flex-direction:column;gap:8px}
+  .comment{padding:8px;border-radius:10px;background:#fbfbfb;border:1px solid rgba(0,0,0,0.03)}
+  .reply-box{margin-top:8px;display:flex;gap:8px}
+  .reply-box input{flex:1;padding:8px;border-radius:10px;border:1px solid rgba(0,0,0,0.06)}
+  /* forms */
+  .form-row{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+  input, select {padding:8px;border-radius:10px;border:1px solid rgba(0,0,0,0.06)}
+  .modal{position:fixed;inset:0;background:rgba(10,10,10,0.4);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}
+  .modal .card{max-width:720px;width:100%}
+  .close{background:transparent;border:0;font-size:18px;cursor:pointer;color:var(--muted)}
+  /* responsive */
+  @media(max-width:980px){.grid{grid-template-columns:1fr;}.nav{padding:10px}}
+  footer{max-width:1100px;margin:22px auto;padding:16px;color:var(--muted);text-align:center}
+  .pill{background:#f0efe6;padding:6px 10px;border-radius:999px;border:1px solid rgba(0,0,0,0.03);font-size:13px}
+</style>
 </head>
 <body>
-  <header>
-    <h1>❃『에버블루 리조트』</h1>
-    <a href="https://discord.gg/PkqaS8fdxN" target="_blank" rel="noopener noreferrer">
-      <img src="https://raw.githubusercontent.com/d31t4h/EverBlue/refs/heads/main/0824985df442835b28e17cd8ce2ed2ce.png" alt="에버블루 디스코드" />
-    </a>
-  </header>
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="logo">껍</div>
+      <div>
+        <div style="font-weight:700">나무껍질</div>
+        <div class="muted" style="font-size:13px">커뮤니티 / 친목 — 둥글둥글한 우리들의 공간</div>
+      </div>
+    </div>
 
-  <nav>
-    <a onclick="showSection('intro')">소개</a>
-    <a onclick="showSection('roles')">역할</a>
-    <a onclick="showSection('rules')">규칙</a>
-    <a onclick="showSection('staff')">운영진</a>
-  </nav>
+    <nav class="links">
+      <button class="btn" onclick="scrollToSection('intro')">서버 소개</button>
+      <button class="btn" onclick="scrollToSection('allies')">동맹 목록</button>
+      <button class="btn" onclick="scrollToSection('board')">자유게시판</button>
+      <button class="btn" onclick="openModal('adminModal')">관리자 신청</button>
+      <button class="btn" onclick="openModal('allyModal')">연합 신청</button>
+    </nav>
+  </div>
+</header>
 
-  <section id="intro" class="active">
-    <h2>서버 소개</h2>
-    <p>편안한 분위기에서 자유롭게 소통할 수 있는 공간, <strong>에버블루 리조트</strong>입니다.</p> 
-    <p>다양한 활동과 이벤트를 통해 모두가 함께할 수 있는 리조트를 지향합니다.</p>
-    <p>동맹을 원하신다면 <strong>파트너 신청</strong> 채널에 있는 티켓을 열어주십시오.</p>
-    <p>순인원 0명부터 파트너 체결이 가능하니, 많은 관심 부탁드립니다.</p>
-    <p>저희 서버의 특징은 다음과 같습니다 :</p>
-    <ul>
-      <li>음성 채널에서 사용 가능한 TTS 봇인 연홍</li> 
-      <li>리더보드 레벨별 역할</li> 
-      <li>여러 봇들을 이용한 도박</li>
-    </ul>
-    <p>위에서 서술한 특징들 외에도, 여러 특징들이 있습니다.</p>
-    <p>다른 궁금한 점이 있으시다면, 지배인들의 DM으로 물어봐주세요.</p>
-  </section>
+<main>
+  <div class="grid">
+    <div>
+      <!-- 서버 소개 -->
+      <section id="intro" class="card">
+        <h2>서버 소개</h2>
+        <p class="muted">나무껍질은 친목 중심의 커뮤니티예요. 역할 구조는 아래와 같습니다.</p>
+        <ul style="margin-top:10px;display:flex;flex-direction:column;gap:8px;">
+          <li class="card" style="display:flex;align-items:center;gap:12px">
+            <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#cdd8a5,#9ca27b);display:flex;align-items:center;justify-content:center;color:white;font-weight:700">소라</div>
+            <div>
+              <div style="font-weight:700">소라게 (서버장)</div>
+              <div class="small">최고 관리자. 서버 운영 총괄</div>
+            </div>
+          </li>
+          <li class="card" style="display:flex;align-items:center;gap:12px">
+            <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#e3d7b8,#c2a86d);display:flex;align-items:center;justify-content:center;color:white;font-weight:700">연합</div>
+            <div>
+              <div style="font-weight:700">연합 담당자</div>
+              <div class="small">외부 동맹 및 제휴 담당</div>
+            </div>
+          </li>
+          <li class="card" style="display:flex;align-items:center;gap:12px">
+            <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#d6d6d6,#a8a8a8);display:flex;align-items:center;justify-content:center;color:white;font-weight:700">문의</div>
+            <div>
+              <div style="font-weight:700">문의 담당자</div>
+              <div class="small">서버 문의 및 처리</div>
+            </div>
+          </li>
+          <li class="card" style="display:flex;align-items:center;gap:12px">
+            <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#b5d8ea,#6fb3d7);display:flex;align-items:center;justify-content:center;color:white;font-weight:700">옆</div>
+            <div>
+              <div style="font-weight:700">옆동네 껍질 (동맹)</div>
+              <div class="small">동맹 서버 멤버</div>
+            </div>
+          </li>
+          <li class="card" style="display:flex;align-items:center;gap:12px">
+            <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#f6caaa,#e57b5d);display:flex;align-items:center;justify-content:center;color:white;font-weight:700">손</div>
+            <div>
+              <div style="font-weight:700">손님 (일반 유저)</div>
+              <div class="small">일반 참여자</div>
+            </div>
+          </li>
+          <li class="card" style="display:flex;align-items:center;gap:12px">
+            <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#9ea4a8,#6e7376);display:flex;align-items:center;justify-content:center;color:white;font-weight:700">봇</div>
+            <div>
+              <div style="font-weight:700">고철덩어리 (봇)</div>
+              <div class="small">자동알림 및 유틸리티</div>
+            </div>
+          </li>
+        </ul>
+      </section>
 
-  <section id="roles">
-    <h2>역할 소개</h2>
-    <ul>
-      <li><strong>총지배인</strong> - 리조트 최고 관리자</li>
-      <li><strong>지배인</strong> - 리조트 및 각 부서 관리</li>
-      <li><strong>부지배인</strong> - 각 부서 지배인 대리</li>
-      <li><strong>파트너실</strong> - 기사 검수, 파트너 체결</li>
-      <li><strong>기획팀</strong> - 인원 관리, 이벤트 기획</li>
-      <li><strong>보안팀</strong> - 채팅 감시 및 비매너 행위 제지</li>
-    </ul>
-  </section>
+      <!-- 동맹 목록 -->
+      <section id="allies" class="card" style="margin-top:16px">
+        <h2>동맹 목록</h2>
+        <div class="muted">아래는 게시물처럼 보이지만 작성은 불가. 코드 내 데이터로 관리됨.</div>
+        <div class="ally-list" id="allyList" style="margin-top:12px"></div>
+      </section>
 
-  <section id="rules">
-    <h2>에버블루 리조트 이용 안내</h2>
-    <ol>
-      <li><strong>물타기 금지</strong><br/>과도한 물타기를 불편해하는 사람들이 있습니다.</li>
-      <li><strong>비속어, 일베 금지</strong><br/>당연한 상식입니다.</li>
-      <li><strong>닉네임이나 프로필 사진 주의</strong><br/>디스코드 TOS를 준수하는 프로필을 이용하여 주십시오.</li>
-      <li><strong>정치 발언 및 사진/동영상 금지</strong><br/>“■■■ 때문이다” 같은 발언은 절대적으로 금지됩니다.</li>
-      <li><strong>뒷메/앞메 금지</strong><br/>홍보 채널 제외 타 채널이나 DM으로 홍보를 하지 마십시오.</li>
-      <li><strong>도배 금지</strong><br/>같은 단어를 5회 이상 연속적으로 치는 경우를 의미합니다. [관리자 판단]</li>
-      <li><strong>규칙 위반 시 경고</strong><br/>타임아웃 ~ 서버 차단의 처벌이 이루어집니다.</li>
-      <li><strong>관리진 말에 따르기</strong><br/>지배인들의 말을 잘 들어주십시오.</li>
-      <li><strong>[홍보/봇] 채널 외 [홍보/봇 사용] 금지</strong><br/>서버 미관상 금지됩니다.</li>
-    </ol>
-  </section>
+      <!-- 자유게시판 -->
+      <section id="board" class="card" style="margin-top:16px">
+        <h2>자유게시판</h2>
+        <div class="muted">로그인 필요 없음. 익명으로 작성됩니다. 이름은 '껍데기', '껍데기1' ... 형식.</div>
 
-  <section id="staff">
-    <h2>운영진</h2>
-    <ul>
-      <li><strong>총지배인:</strong> 소라게</li>
-      <li><strong>지배인 [파트너실장]:</strong> 설빈</li>
-      <li><strong>지배인 [기획팀장]:</strong> 텅그랭</li>
-      <li><strong>지배인 [보안팀장]:</strong> 라면</li>
-      <li><strong>지배인 [기타 문서작업]:</strong> 델타</li>
-      <li><strong>부지배인:</strong> <strong>[기획팀]</strong>우진</li>
-    </ul>
-  </section>
+        <div class="post-form" style="margin-top:12px">
+          <label class="small">글 제목</label>
+          <input id="postTitle" placeholder="제목" />
+          <label class="small" style="margin-top:8px">내용</label>
+          <textarea id="postContent" placeholder="내용을 입력하세요"></textarea>
+          <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
+            <button class="btn" onclick="createPost()">작성</button>
+            <div class="pill" id="myNamePill">내 익명명: -</div>
+          </div>
+        </div>
 
-  <footer>© 2025 에버블루 리조트 · DelTaΔ 제작</footer>
+        <div class="posts" id="posts"></div>
+      </section>
+    </div>
+
+    <!-- 오른쪽 사이드 -->
+    <aside>
+      <div class="card">
+        <h3>빠른 액션</h3>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+          <button class="btn" onclick="openModal('adminModal')">관리자 신청</button>
+          <button class="btn" onclick="openModal('allyModal')">연합 신청</button>
+          <button class="btn" onclick="scrollToSection('board')">자유게시판 가기</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <h3>공지</h3>
+        <div class="muted">서버 소개 및 활동 규칙은 디스코드에서 우선 적용됩니다.</div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<!-- 관리자 신청 모달 -->
+<div id="adminModal" class="modal" onclick="closeModal(event,'adminModal')">
+  <div class="card" onclick="event.stopPropagation()">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h3>관리자 신청</h3>
+      <button class="close" onclick="closeModal(null,'adminModal')">✕</button>
+    </div>
+    <p class="muted">폼 제출 시 설정한 이메일로 내용 전송됩니다.</p>
+    <div style="margin-top:8px">
+      <div class="form-row"><label>디스코드 닉네임</label><input id="adm_nick" placeholder="껍질#1234"></div>
+      <div class="form-row"><label>디스코드 ID</label><input id="adm_id" placeholder="123456789012345678"></div>
+      <div class="form-row"><label>경력</label><input id="adm_exp" placeholder="예: 서버 운영 1년"></div>
+      <div class="form-row"><label>포부</label><textarea id="adm_goal" placeholder="하고 싶은 말"></textarea></div>
+      <div style="display:flex;gap:8px">
+        <button class="btn" onclick="submitAdmin()">전송</button>
+        <button class="btn" onclick="copyAdminDraft()" style="background:#6f6f6f">메일 클립보드 복사</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 연합 신청 모달 -->
+<div id="allyModal" class="modal" onclick="closeModal(event,'allyModal')">
+  <div class="card" onclick="event.stopPropagation()">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h3>연합 신청</h3>
+      <button class="close" onclick="closeModal(null,'allyModal')">✕</button>
+    </div>
+    <p class="muted">연합 신청 폼</p>
+    <div style="margin-top:8px">
+      <div class="form-row"><label>디스코드 닉네임</label><input id="ally_nick" placeholder="서버장#0001"></div>
+      <div class="form-row"><label>디스코드 ID</label><input id="ally_id" placeholder="123456789012345678"></div>
+      <div class="form-row"><label>서버 초대 링크</label><input id="ally_link" placeholder="https://discord.gg/xxxx"></div>
+      <div style="display:flex;gap:8px">
+        <button class="btn" onclick="submitAlly()">전송</button>
+        <button class="btn" onclick="copyAllyDraft()" style="background:#6f6f6f">메일 클립보드 복사</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  만든이: 나무껍질 서버 · 프론트 데모 (HTML 단일파일). EmailJS 설정하면 신청 이메일 자동 전송됨.
+</footer>
 
 <script>
-  let lastIndex = 0;
-  const tabs = ['intro', 'roles', 'rules', 'staff'];
+/* ---------------------------
+  설정: 이메일 전송용(EmailJS) 세팅
+  - EmailJS 사용하려면 https://www.emailjs.com 에 가입해서
+    Service ID, Template ID, Public Key(user ID) 발급받아 아래에 넣어.
+  - 템플릿 변수는 templateParams로 전달됨.
+----------------------------*/
+const EMAILJS_USER_ID = ""; // 예: user_xxx (비워두면 mailto fallback)
+const EMAILJS_SERVICE_ID = ""; // 예: service_xxx
+const EMAILJS_TEMPLATE_ID_ADMIN = ""; // 템플릿 (관리자 신청)
+const EMAILJS_TEMPLATE_ID_ALLY = "";  // 템플릿 (연합 신청)
 
-  function showSection(id) {
-    const newIndex = tabs.indexOf(id);
-    const activeSection = document.querySelector('section.active');
-    const newSection = document.getElementById(id);
+if (window.emailjs && EMAILJS_USER_ID) {
+  emailjs.init(EMAILJS_USER_ID);
+}
 
-    if (activeSection) {
-      activeSection.classList.remove('active');
-      activeSection.style.transition = 'none';
-      activeSection.style.opacity = '0';
-      activeSection.style.transform = newIndex > lastIndex ? 'translateX(-50px)' : 'translateX(50px)';
-    }
+/* ---------------------------
+  동맹 목록 (작성 불가) — 필요하면 여기 수정
+----------------------------*/
+const allies = [
+  {name:"옆동네1",desc:"즐거운 서버, 친목 위주",link:"#",img:"https://picsum.photos/80?random=1"},
+  {name:"옆동네2",desc:"게임 중심 동맹",link:"#",img:"https://picsum.photos/80?random=2"},
+  {name:"옆동네3",desc:"같이 놀자",link:"#",img:"https://picsum.photos/80?random=3"}
+];
 
-    newSection.style.transition = 'none';
-    newSection.style.opacity = '0';
-    newSection.style.transform = newIndex > lastIndex ? 'translateX(50px)' : 'translateX(-50px)';
-    newSection.style.display = 'block';
+function renderAllies() {
+  const el = document.getElementById('allyList'); el.innerHTML="";
+  allies.forEach(a=>{
+    const div = document.createElement('div'); div.className='ally';
+    div.innerHTML = `<img src="${a.img}" alt=""><div class="meta"><div style="font-weight:700">${a.name}</div><div class="small">${a.desc}</div></div><div><a class="btn" href="${a.link}" target="_blank">초대</a></div>`;
+    el.appendChild(div);
+  });
+}
+renderAllies();
 
-    requestAnimationFrame(() => {
-      newSection.classList.add('active');
-      newSection.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      newSection.style.transform = 'translateX(0)';
-      newSection.style.opacity = '1';
-    });
-
-    lastIndex = newIndex;
+/* ---------------------------
+  익명 닉네임 로직 (브라우저별)
+  - 첫 접속자: '껍데기'
+  - 그 다음: '껍데기1', '껍데기2' ...
+  - 각 브라우저는 고유 visitorId를 가짐 (localStorage)
+----------------------------*/
+function ensureVisitor() {
+  let visitorId = localStorage.getItem('nm_visitor_id');
+  if (!visitorId) {
+    // 신규 방문자: 할당된 숫자 꺼내서 증가
+    let seq = parseInt(localStorage.getItem('nm_anon_seq')||'0',10) + 1;
+    localStorage.setItem('nm_anon_seq', String(seq));
+    visitorId = 'v' + Date.now() + '_' + Math.random().toString(36).slice(2,8);
+    localStorage.setItem('nm_visitor_id', visitorId);
+    // assign display name index for this visitor
+    localStorage.setItem('nm_display_index_'+visitorId, String(seq-1)); // 0 -> 껍데기, 1 -> 껍데기1 ...
   }
+  return visitorId;
+}
+const myVisitor = ensureVisitor();
+function myDisplayName() {
+  const idx = parseInt(localStorage.getItem('nm_display_index_'+myVisitor) || '0',10);
+  return idx===0 ? '껍데기' : ('껍데기' + idx);
+}
+document.getElementById('myNamePill').innerText = '내 익명명: ' + myDisplayName();
+
+/* ---------------------------
+  게시판 (localStorage 기반)
+  구조: posts = [{id,title,content,authorId,ts,comments:[{id,authorId,txt,ts,replies:[...]}]}]
+----------------------------*/
+function loadPosts() {
+  return JSON.parse(localStorage.getItem('nm_posts') || '[]');
+}
+function savePosts(posts){ localStorage.setItem('nm_posts', JSON.stringify(posts)); }
+function renderPosts() {
+  const container = document.getElementById('posts'); container.innerHTML='';
+  const posts = loadPosts().sort((a,b)=>b.ts - a.ts);
+  posts.forEach(p=>{
+    const div = document.createElement('div'); div.className='post';
+    const authorName = displayNameFor(p.authorId);
+    const date = new Date(p.ts).toLocaleString();
+    div.innerHTML = `<div class="meta"><div><strong>${escapeHtml(p.title||'(제목 없음)')}</strong><div class="small">${authorName} · ${date}</div></div>
+      <div><button class="btn" onclick="deletePost('${p.id}')">삭제</button></div></div>
+      <div class="content">${escapeHtml(p.content)}</div>
+      <div class="comments">${renderCommentsHtml(p)}</div>
+      <div class="reply-box">
+        <input placeholder="댓글 쓰기" id="reply_input_${p.id}">
+        <button class="btn" onclick="addComment('${p.id}')">전송</button>
+      </div>`;
+    container.appendChild(div);
+  });
+}
+function renderCommentsHtml(p) {
+  if(!p.comments) p.comments=[];
+  return p.comments.map(c=>{
+    const name = displayNameFor(c.authorId);
+    const time = new Date(c.ts).toLocaleString();
+    const replies = (c.replies||[]).map(r=>{
+      const rn = displayNameFor(r.authorId);
+      return `<div class="comment" style="margin-left:12px"><div style="font-weight:700">${rn} <span class="small">${new Date(r.ts).toLocaleString()}</span></div><div>${escapeHtml(r.txt)}</div></div>`;
+    }).join('');
+    return `<div class="comment"><div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">${name} <span class="small">${time}</span></div><div><button class="btn" onclick="deleteComment('${p.id}','${c.id}')">삭제</button></div></div><div>${escapeHtml(c.txt)}</div>
+      ${replies}
+      <div class="reply-box">
+        <input placeholder="답글" id="reply_${p.id}_${c.id}">
+        <button class="btn" onclick="addReply('${p.id}','${c.id}')">답글</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+function displayNameFor(authorId){
+  if(!authorId) return '껍데기';
+  let idx = localStorage.getItem('nm_display_index_'+authorId);
+  if(idx===null) {
+    // 외부 작성자: assign a new index (this only affects current browser storage)
+    let seq = parseInt(localStorage.getItem('nm_anon_seq')||'0',10) + 1;
+    localStorage.setItem('nm_anon_seq', String(seq));
+    localStorage.setItem('nm_display_index_'+authorId, String(seq-1));
+    idx = String(seq-1);
+  }
+  idx = parseInt(idx,10);
+  return idx===0 ? '껍데기' : ('껍데기' + idx);
+}
+function createPost(){
+  const t = document.getElementById('postTitle').value.trim();
+  const c = document.getElementById('postContent').value.trim();
+  if(!c){ alert('내용 적어라'); return; }
+  const posts = loadPosts();
+  posts.push({id:'p'+Date.now()+'_'+Math.random().toString(36).slice(2,6), title:t, content:c, authorId:myVisitor, ts:Date.now(), comments:[]});
+  savePosts(posts);
+  document.getElementById('postTitle').value='';
+  document.getElementById('postContent').value='';
+  renderPosts();
+}
+function addComment(postId){
+  const v = document.getElementById('reply_input_'+postId).value.trim();
+  if(!v) return;
+  const posts = loadPosts();
+  const p = posts.find(x=>x.id===postId);
+  p.comments = p.comments || [];
+  p.comments.push({id:'c'+Date.now()+'_'+Math.random().toString(36).slice(2,6), authorId:myVisitor, txt:v, ts:Date.now(), replies:[]});
+  savePosts(posts); document.getElementById('reply_input_'+postId).value=''; renderPosts();
+}
+function addReply(postId, commentId){
+  const el = document.getElementById('reply_'+postId+'_'+commentId);
+  const v = el.value.trim(); if(!v) return;
+  const posts = loadPosts();
+  const p = posts.find(x=>x.id===postId);
+  const c = p.comments.find(x=>x.id===commentId);
+  c.replies = c.replies || [];
+  c.replies.push({id:'r'+Date.now(), authorId:myVisitor, txt:v, ts:Date.now()});
+  savePosts(posts); el.value=''; renderPosts();
+}
+function deletePost(id){
+  if(!confirm('삭제할래?')) return;
+  let posts = loadPosts();
+  posts = posts.filter(p=>p.id!==id);
+  savePosts(posts); renderPosts();
+}
+function deleteComment(postId, commentId){
+  if(!confirm('댓글 삭제할래?')) return;
+  let posts = loadPosts();
+  const p = posts.find(x=>x.id===postId);
+  p.comments = p.comments.filter(c=>c.id!==commentId);
+  savePosts(posts); renderPosts();
+}
+
+/* ---------------------------
+  관리자/연합 신청 전송 (EmailJS or mailto fallback)
+----------------------------*/
+function submitAdmin(){
+  const nick = document.getElementById('adm_nick').value.trim();
+  const id = document.getElementById('adm_id').value.trim();
+  const exp = document.getElementById('adm_exp').value.trim();
+  const goal = document.getElementById('adm_goal').value.trim();
+  const body = `[관리자 신청]\n닉네임: ${nick}\nID: ${id}\n경력: ${exp}\n포부: ${goal}`;
+  if(EMAILJS_USER_ID && EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID_ADMIN && window.emailjs){
+    const templateParams = {nick, id, exp, goal, message:body};
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_ADMIN, templateParams)
+    .then(()=>{ alert('신청 전송됨'); closeModal(null,'adminModal'); })
+    .catch(err=>{ console.error(err); alert('전송 실패. mailto로 열립니다.'); openMailTo('admin',body); });
+  } else {
+    openMailTo('admin', body);
+  }
+}
+function submitAlly(){
+  const nick = document.getElementById('ally_nick').value.trim();
+  const id = document.getElementById('ally_id').value.trim();
+  const link = document.getElementById('ally_link').value.trim();
+  const body = `[연합 신청]\n닉네임: ${nick}\nID: ${id}\n서버 링크: ${link}`;
+  if(EMAILJS_USER_ID && EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID_ALLY && window.emailjs){
+    const templateParams = {nick, id, link, message:body};
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_ALLY, templateParams)
+    .then(()=>{ alert('연합 신청 전송됨'); closeModal(null,'allyModal'); })
+    .catch(err=>{ console.error(err); alert('전송 실패. mailto로 열립니다.'); openMailTo('ally', body); });
+  } else {
+    openMailTo('ally', body);
+  }
+}
+function openMailTo(type, body){
+  // 특정 이메일 주소로 보내고 싶으면 아래 주소 바꿔
+  const targetEmail = 'admin@example.com';
+  const subj = type==='admin' ? '나무껍질 관리자 신청' : '나무껍질 연합 신청';
+  const mail = `mailto:${encodeURIComponent(targetEmail)}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
+  location.href = mail;
+}
+function copyAdminDraft(){
+  const nick = document.getElementById('adm_nick').value.trim();
+  const id = document.getElementById('adm_id').value.trim();
+  const exp = document.getElementById('adm_exp').value.trim();
+  const goal = document.getElementById('adm_goal').value.trim();
+  const body = `[관리자 신청]\n닉네임: ${nick}\nID: ${id}\n경력: ${exp}\n포부: ${goal}`;
+  navigator.clipboard.writeText(body).then(()=>alert('클립보드에 복사됨'));
+}
+function copyAllyDraft(){
+  const nick = document.getElementById('ally_nick').value.trim();
+  const id = document.getElementById('ally_id').value.trim();
+  const link = document.getElementById('ally_link').value.trim();
+  const body = `[연합 신청]\n닉네임: ${nick}\nID: ${id}\n서버 링크: ${link}`;
+  navigator.clipboard.writeText(body).then(()=>alert('클립보드에 복사됨'));
+}
+
+/* ---------------------------
+  유틸 & 초기화
+----------------------------*/
+function openModal(id){ document.getElementById(id).style.display='flex'; }
+function closeModal(e,id){ if(e && e.target && e.target.classList && e.target.classList.contains('modal')){ document.getElementById(id).style.display='none'; } else document.getElementById(id).style.display='none'; }
+function scrollToSection(id){ document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function escapeHtml(s){ if(!s) return ''; return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+
+// demo posts 초기값 (처음 한 번만)
+if(!localStorage.getItem('nm_demo_seeded')){
+  const demo = [{id:'p_demo1',title:'나무껍질에 오신 걸 환영합니다',content:'이곳은 친목 중심의 자유게시판입니다. 익명으로 글 작성 가능해요.',authorId:'seed1',ts:Date.now()-86400000,comments:[
+    {id:'c1',authorId:'seed2',txt:'첫 댓글이다!',ts:Date.now()-80000000,replies:[]}
+  ]}];
+  localStorage.setItem('nm_posts', JSON.stringify(demo));
+  // seed display indexes for seed users
+  localStorage.setItem('nm_display_index_seed1','0');
+  localStorage.setItem('nm_display_index_seed2','1');
+  localStorage.setItem('nm_anon_seq','2');
+  localStorage.setItem('nm_demo_seeded','1');
+}
+renderPosts();
+
 </script>
 </body>
-  </html>
+</html>
