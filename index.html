@@ -1,257 +1,128 @@
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>나무껍질 - 커뮤니티</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Soviet Union Discord</title>
 <style>
-  :root{
-    --bg:#FAF7F2; --card:#fff; --accent:#9CA27B; --muted:#7b7b7b;
-    --radius:16px;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:Inter, "Noto Sans KR", system-ui, sans-serif;background:linear-gradient(180deg,#fbf9f6, #f2efe6);color:#222}
-  header{position:sticky;top:0;background:rgba(255,255,255,0.8);backdrop-filter:blur(6px);z-index:10;border-bottom:1px solid rgba(0,0,0,0.05)}
-  .nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px}
-  .brand{display:flex;gap:12px;align-items:center}
-  .logo{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#d6c89b,#b98c5a);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
-  nav .links{display:flex;gap:10px}
-  .btn{background:var(--accent);color:white;padding:8px 12px;border-radius:12px;border:0;cursor:pointer;transition:transform .15s ease;box-shadow:0 6px 18px rgba(156,162,123,0.14)}
-  .btn:active{transform:translateY(1px)}
-  main{max-width:1100px;margin:22px auto;padding:0 16px}
-  .grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
-  .card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 6px 20px rgba(30,30,30,0.06);animation:fadeIn .35s ease;overflow:hidden}
-  @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-  h2{margin:0 0 8px 0}
-  .muted{color:var(--muted);font-size:13px}
-  /* list cards */
-  .ally-list{display:grid;gap:10px}
-  .ally{display:flex;gap:12px;align-items:center;padding:10px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfbfb);border:1px solid rgba(0,0,0,0.03)}
-  .ally img{width:46px;height:46px;border-radius:10px;object-fit:cover}
-  .ally .meta{flex:1}
-  .small{font-size:13px;color:var(--muted)}
-  /* 게시판 */
-  .post-form textarea{width:100%;min-height:80px;padding:10px;border-radius:12px;border:1px solid rgba(0,0,0,0.06);resize:vertical}
-  .posts{display:flex;flex-direction:column;gap:12px;margin-top:12px}
-  .post{padding:12px;border-radius:12px;border:1px solid rgba(0,0,0,0.04);background:#fff}
-  .post .meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-  .post .content{white-space:pre-wrap}
-  .comments{margin-top:8px;padding-left:10px;display:flex;flex-direction:column;gap:8px}
-  .comment{padding:8px;border-radius:10px;background:#fbfbfb;border:1px solid rgba(0,0,0,0.03)}
-  .reply-box{margin-top:8px;display:flex;gap:8px}
-  .reply-box input{flex:1;padding:8px;border-radius:10px;border:1px solid rgba(0,0,0,0.06)}
-  /* forms */
-  .form-row{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
-  input, select {padding:8px;border-radius:10px;border:1px solid rgba(0,0,0,0.06)}
-  /* responsive */
-  @media(max-width:980px){.grid{grid-template-columns:1fr;}.nav{padding:10px}}
-  footer{max-width:1100px;margin:22px auto;padding:16px;color:var(--muted);text-align:center}
-  .pill{background:#f0efe6;padding:6px 10px;border-radius:999px;border:1px solid rgba(0,0,0,0.03);font-size:13px}
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
+body {
+  margin:0;
+  font-family:'Russo One',sans-serif;
+  background: radial-gradient(circle at center, #8b0000, #3b0000);
+  color:#f0d9d9;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+header {
+  font-size:3rem;
+  margin-bottom:0.5em;
+  color:#ffcc00;
+  text-shadow:2px 2px 4px #660000;
+  letter-spacing:0.1em;
+}
+
+nav a {
+  color:#ffcc00;
+  text-decoration:none;
+  margin:0 15px;
+  font-size:1.2rem;
+  text-shadow:1px 1px 3px #660000;
+}
+
+.hammer-sickle {
+  font-size:4rem;
+  color:#ffcc00;
+  text-shadow:2px 2px 6px #660000;
+  margin-bottom:1em;
+}
+
+.description {
+  max-width:600px;
+  margin-bottom:2em;
+  line-height:1.5;
+  text-shadow:1px 1px 2px #330000;
+}
+
+.notice-board {
+  background: rgba(255,204,0,0.1);
+  border-radius:10px;
+  padding:1.5em;
+  box-shadow:0 0 15px #ffcc00;
+  max-width:600px;
+  width:100%;
+  margin-bottom:2em;
+  text-align:left;
+}
+
+.notice-board h2 {
+  text-align:center;
+  color:#ffcc00;
+  text-shadow:1px 1px 3px #660000;
+  margin-bottom:1em;
+}
+
+.notice-item {
+  border-bottom:1px solid rgba(255,204,0,0.3);
+  padding:0.5em 0;
+}
+
+.notice-item:last-child { border-bottom:none; }
+
+button {
+  background:#ffcc00;
+  color:#3b0000;
+  border:none;
+  padding:0.75em 1.5em;
+  font-weight:bold;
+  border-radius:5px;
+  cursor:pointer;
+  box-shadow:0 0 10px #ffcc00;
+  letter-spacing:0.08em;
+  margin-top:1em;
+}
+
+button:hover {
+  background:#e6b800;
+  box-shadow:0 0 20px #ffcc00;
+}
+
+footer {
+  margin-top:3em;
+  font-size:0.85rem;
+  color:#bb8a00;
+  text-shadow:1px 1px 3px #330000;
+}
 </style>
 </head>
 <body>
-<header>
-  <div class="nav">
-    <div class="brand">
-      <div class="logo">껍</div>
-      <div>
-        <div style="font-weight:700">나무껍질</div>
-        <div class="muted" style="font-size:13px">커뮤니티 / 친목 — 둥글둥글한 우리들의 공간</div>
-      </div>
-    </div>
+<header>Join the Soviet Union Discord</header>
 
-    <nav class="links">
-      <button class="btn" onclick="scrollToSection('intro')">서버 소개</button>
-      <button class="btn" onclick="scrollToSection('allies')">동맹 목록</button>
-      <button class="btn" onclick="scrollToSection('board')">자유게시판</button>
-      <button class="btn" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLScE77fL9qOqODL7vYTG2MzRSuDXzh7Qx24qLFH51liCIMZumw/viewform?usp=header'">관리자 지원</button>
-      <button class="btn" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLScIIiXqtM87d6BJlReRADg2byz1g7fToUjotd7EAGJSVTu03Q/viewform?usp=header'">연합 신청</button>
-    </nav>
-  </div>
-</header>
+<nav>
+<a href="index.html">Home</a>
+<a href="recruit.html">Recruitment</a>
+</nav>
 
-<main>
-  <div class="grid">
-    <div>
-      <!-- 서버 소개 -->
-      <section id="intro" class="card">
-        <h2>서버 소개</h2>
-        <p class="muted">나무껍질은 친목 중심의 커뮤니티예요. 역할 구조는 아래와 같습니다.</p>
-        <ul style="margin-top:10px;display:flex;flex-direction:column;gap:8px;">
-          <li class="card" style="display:flex;align-items:center;gap:12px">
-            <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#cdd8a5,#9ca27b);display:flex;align-items:center;justify-content:center;color:white;font-weight:700">소라</div>
-            <div>
-              <div style="font-weight:700">소라게 (서버장)</div>
-              <div class="small">최고 관리자. 서버 운영 총괄</div>
-            </div>
-          </li>
-          <li class="card" style="display:flex;align-items:center;gap:12px">
-            <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#e3d7b8,#c2a86d);display:flex;align-items:center;justify-content:center;color:white;font-weight:700">연합</div>
-            <div>
-              <div style="font-weight:700">연합 담당자</div>
-              <div class="small">외부 동맹 및 제휴 담당</div>
-            </div>
-          </li>
-          <li class="card" style="display:flex;align-items:center;gap:12px">
-            <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#d6d6d6,#a8a8a8);display:flex;align-items:center;justify-content:center;color:white;font-weight:700">문의</div>
-            <div>
-              <div style="font-weight:700">문의 담당자</div>
-              <div class="small">서버 문의 및 처리</div>
-            </div>
-          </li>
-          <li class="card" style="display:flex;align-items:center;gap:12px">
-            <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#b5d8ea,#6fb3d7);display:flex;align-items:center;justify-content:center;color:white;font-weight:700">옆</div>
-            <div>
-              <div style="font-weight:700">옆동네 껍질 (동맹)</div>
-              <div class="small">동맹 서버 멤버</div>
-            </div>
-          </li>
-          <li class="card" style="display:flex;align-items:center;gap:12px">
-            <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#f6caaa,#e57b5d);display:flex;align-items:center;justify-content:center;color:white;font-weight:700">손</div>
-            <div>
-              <div style="font-weight:700">손님 (일반 유저)</div>
-              <div class="small">일반 참여자</div>
-            </div>
-          </li>
-          <li class="card" style="display:flex;align-items:center;gap:12px">
-            <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#9ea4a8,#6e7376);display:flex;align-items:center;justify-content:center;color:white;font-weight:700">봇</div>
-            <div>
-              <div style="font-weight:700">고철덩어리 (봇)</div>
-              <div class="small">자동알림 및 유틸리티</div>
-            </div>
-          </li>
-        </ul>
-      </section>
+<div class="hammer-sickle">☭</div>
 
-      <!-- 동맹 목록 -->
-      <section id="allies" class="card" style="margin-top:16px">
-        <h2>동맹 목록</h2>
-        <div class="muted">동맹 신청 또한 이 사이트에서 해주세요!.</div>
-        <div class="ally-list" id="allyList" style="margin-top:12px"></div>
-      </section>
+<p class="description">
+Comrades, unite and join our recruitment drive! If you believe in the strength of the collective and the power of the Soviet spirit.
+</p>
 
-      <!-- 자유게시판 -->
-      <section id="board" class="card" style="margin-top:16px">
-        <h2>자유게시판</h2>
-        <div class="muted">로그인 필요 없음. 익명으로 작성됩니다.</div>
+<div class="notice-board">
+<h2>📢 Server Updates & Announcements</h2>
+<div class="notice-item">2025.02.10 — Voice channels reorganized</div>
+<div class="notice-item">2025.02.08 — New rank roles added</div>
+<div class="notice-item">2025.02.06 — Recruitment drive now active</div>
+</div>
 
-        <div class="post-form" style="margin-top:12px">
-          <label class="small">글 제목</label>
-          <input id="postTitle" placeholder="제목" />
-          <label class="small" style="margin-top:8px">내용</label>
-          <textarea id="postContent" placeholder="내용을 입력하세요"></textarea>
-          <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
-            <button class="btn" onclick="createPost()">작성</button>
-            <div class="pill" id="myNamePill">내 익명명: -</div>
-          </div>
-        </div>
+<a href="recruit.html"><button>Go to Recruitment Page</button></a>
 
-        <div class="posts" id="posts"></div>
-      </section>
-    </div>
-
-    <!-- 오른쪽 사이드 -->
-    <aside>
-      <div class="card">
-        <h3>빠른 액션</h3>
-        <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
-          <button class="btn" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLScE77fL9qOqODL7vYTG2MzRSuDXzh7Qx24qLFH51liCIMZumw/viewform?usp=header'">관리자 지원</button>
-          <button class="btn" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLScIIiXqtM87d6BJlReRADg2byz1g7fToUjotd7EAGJSVTu03Q/viewform?usp=header'">연합 신청</button>
-          <button class="btn" onclick="scrollToSection('board')">자유게시판 가기</button>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top:12px">
-        <h3>공지</h3>
-        <div class="muted">서버 소개 및 활동 규칙은 디스코드에서 우선 적용됩니다.</div>
-      </div>
-    </aside>
-  </div>
-</main>
-
-<footer>
-  © 2025 DelTaΔ · 나무껍질
-</footer>
-
-<script>
-/* 동맹 목록 (수정 불가) */
-const allies = [
-  {name:"옆동네1",desc:"즐거운 서버, 친목 위주",link:"#",img:"https://picsum.photos/80?random=1"},
-  {name:"옆동네2",desc:"게임 중심 동맹",link:"#",img:"https://picsum.photos/80?random=2"},
-  {name:"옆동네3",desc:"같이 놀자",link:"#",img:"https://picsum.photos/80?random=3"}
-];
-function renderAllies() {
-  const el = document.getElementById('allyList'); el.innerHTML="";
-  allies.forEach(a=>{
-    const div = document.createElement('div'); div.className='ally';
-    div.innerHTML = `<img src="${a.img}" alt=""><div class="meta"><div style="font-weight:700">${a.name}</div><div class="small">${a.desc}</div></div><div><a class="btn" href="${a.link}" target="_blank">초대</a></div>`;
-    el.appendChild(div);
-  });
-}
-renderAllies();
-
-/* 스크롤 이동 */
-function scrollToSection(id){
-  const el = document.getElementById(id);
-  if(el) el.scrollIntoView({behavior:"smooth"});
-}
-
-/* 게시판 간단 기능 */
-let posts = JSON.parse(localStorage.getItem('posts')||'[]');
-
-/* 익명명 저장용 */
-const names = ['소라게','껍질','나무껍질','달팽이','숲속요정'];
-function randomName(){
-  return names[Math.floor(Math.random()*names.length)];
-}
-
-function savePosts(){
-  localStorage.setItem('posts',JSON.stringify(posts));
-}
-
-function createPost(){
-  const title = document.getElementById('postTitle').value.trim();
-  const content = document.getElementById('postContent').value.trim();
-  if(!title||!content){alert('제목과 내용을 입력해주세요.');return;}
-
-  /* 익명명도 같이 저장하도록 변경 */
-  const anonName = randomName();
-
-  posts.unshift({id:Date.now(),title,content,date:new Date().toISOString(),anonName});
-  savePosts();
-  renderPosts();
-
-  document.getElementById('postTitle').value="";
-  document.getElementById('postContent').value="";
-}
-
-function renderPosts(){
-  const container = document.getElementById('posts');
-  container.innerHTML="";
-  if(posts.length===0){
-    container.innerHTML = "<p class='muted'>아직 글이 없어요.</p>";
-    return;
-  }
-  posts.forEach(p=>{
-    const d = document.createElement('div');
-    d.className='post';
-    d.innerHTML = `
-      <div class="meta">
-        <strong>${p.title}</strong> 
-        <span style="font-size:12px;color:#999">${new Date(p.date).toLocaleString()}</span>
-        <span style="font-size:12px;color:#666;margin-left:8px;">익명명: ${p.anonName || '-'}</span>
-      </div>
-      <div class="content">${p.content.replace(/\n/g,'<br>')}</div>
-    `;
-    container.appendChild(d);
-  });
-}
-
-/* 내 익명명 표시 */
-const myName = randomName();
-document.getElementById('myNamePill').textContent = "내 익명명: " + myName;
-
-renderPosts();
-</script>
+<footer>© Soviet Discord Community</footer>
 </body>
 </html>
