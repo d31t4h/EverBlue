@@ -10,7 +10,15 @@
 body {
   margin:0;
   font-family:'Playfair Display', serif;
-  background: radial-gradient(circle at center, #fff8e7, #d6c9a3);
+  background: 
+    linear-gradient(180deg, #fffdf7 0%, #ffffff 40%, #fffdf7 100%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(212,175,55,0.15) 0px,
+      rgba(212,175,55,0.15) 2px,
+      transparent 2px,
+      transparent 14px
+    );
   color:#4b3d2a;
   display:flex;
   flex-direction:column;
@@ -46,7 +54,6 @@ nav a {
   max-width:600px;
   margin-bottom:2em;
   line-height:1.6;
-  text-shadow:0 0 4px rgba(255,255,255,0.9);
   font-size:1.05rem;
 }
 
@@ -98,7 +105,6 @@ footer {
   margin-top:3em;
   font-size:0.85rem;
   color:#a98d45;
-  text-shadow:0 0 4px rgba(255,255,255,0.8);
 }
 </style>
 </head>
@@ -113,19 +119,18 @@ footer {
 <div class="vatican-symbol">✝️</div>
 
 <p class="description">
-바티칸 시국에 오신 여러분을 환영합니다. 
-좋은 시간 되시길 바랍니다.
-  - DelTa -
+Hello.
+<br> - DelTa -
 </p>
 
 <div class="notice-board">
 <h2>📜 공지 </h2>
-<div class="notice-item">2025.11.01 — 바티칸으로 테마 변경</div>
-<div class="notice-item">2025.10.31 — 프롤레타리아 연방으로 테마 변경</div>
-<div class="notice-item">2025.02.26 — 국세청 신설</div>
+<div class="notice-item">2025.11.01 — 바티칸 테마 정착</div>
+<div class="notice-item">2025.10.31 — 프롤레타리아 테마로 변경</div>
+<div class="notice-item">2025.02.26 — 국세청 설립</div>
 </div>
 
-<a href="recruit.html"><button>Clergy Entrance →</button></a>
+<a href="recruit.html"><button>Recruitment →</button></a>
 
 <footer>© 바티칸 시국 디스코드 커뮤니티</footer>
 </body>
