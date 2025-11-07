@@ -53,7 +53,7 @@
 </style>
 </head>
 <body>
-  <h1>토글 시스템</h1>
+  <h1>디코의 법칙</h1>
   <div class="toggle-container">
     <label>
       디스코드
@@ -74,16 +74,18 @@
     const happy = document.getElementById('happy');
     const mental = document.getElementById('mental');
 
-    function updateState() {
-      // 규칙 1: 디스코드와 정신 피폐가 모두 ON이면 행복은 OFF
-      if (discord.checked && mental.checked) {
-        happy.checked = false;
-      }
-
-      // 규칙 2: 행복을 ON으로 하면 나머지는 OFF
-      if (happy.checked) {
+    function updateState(e) {
+      // 행복을 누를 때의 특별 처리
+      if (e.target === happy && happy.checked) {
+        // 행복을 켜면 나머지 두 개는 꺼짐
         discord.checked = false;
         mental.checked = false;
+        return; // 나머지 규칙은 무시
+      }
+
+      // 규칙 1: 디스코드와 정신 피폐가 모두 ON이면 행복 OFF
+      if (discord.checked && mental.checked) {
+        happy.checked = false;
       }
     }
 
