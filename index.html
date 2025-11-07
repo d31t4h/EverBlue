@@ -75,15 +75,23 @@
     const mental = document.getElementById('mental');
 
     function updateState(e) {
-      // 행복을 누를 때의 특별 처리
-      if (e.target === happy && happy.checked) {
-        // 행복을 켜면 나머지 두 개는 꺼짐
+      // 행복이 켜질 때 → 나머지 두 개 OFF
+      if (happy.checked) {
         discord.checked = false;
         mental.checked = false;
-        return; // 나머지 규칙은 무시
       }
 
-      // 규칙 1: 디스코드와 정신 피폐가 모두 ON이면 행복 OFF
+      // 행복과 정신 피폐는 공존 불가
+      if (mental.checked && happy.checked) {
+        happy.checked = false;
+      }
+
+      // 행복과 디스코드도 공존 불가
+      if (discord.checked && happy.checked) {
+        happy.checked = false;
+      }
+
+      // 디스코드와 정신 피폐가 동시에 ON이면 행복은 자동 OFF
       if (discord.checked && mental.checked) {
         happy.checked = false;
       }
