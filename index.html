@@ -1,137 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vatican City</title>
+<title>디스코드-행복-정신 피폐 토글</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
-
-body {
-  margin:0;
-  font-family:'Playfair Display', serif;
-  background: 
-    linear-gradient(180deg, #fffdf7 0%, #ffffff 40%, #fffdf7 100%),
-    repeating-linear-gradient(
-      90deg,
-      rgba(212,175,55,0.15) 0px,
-      rgba(212,175,55,0.15) 2px,
-      transparent 2px,
-      transparent 14px
-    );
-  color:#4b3d2a;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-  padding:20px;
-}
-
-header {
-  font-size:3rem;
-  margin-bottom:0.5em;
-  color:#d4af37;
-  text-shadow:0 0 8px rgba(212,175,55,0.6);
-  letter-spacing:0.07em;
-}
-
-nav a {
-  color:#b99232;
-  text-decoration:none;
-  margin:0 15px;
-  font-size:1.1rem;
-  text-shadow:0 0 4px rgba(180,150,50,0.4);
-}
-
-.vatican-symbol {
-  font-size:4rem;
-  color:#d4af37;
-  text-shadow:0 0 10px rgba(212,175,55,0.8);
-  margin-bottom:1em;
-}
-
-.description {
-  max-width:600px;
-  margin-bottom:2em;
-  line-height:1.6;
-  font-size:1.05rem;
-}
-
-.notice-board {
-  background: rgba(255,255,255,0.6);
-  border-radius:10px;
-  border:1px solid rgba(160,120,40,0.4);
-  padding:1.5em;
-  box-shadow:0 0 15px rgba(212,175,55,0.4);
-  max-width:600px;
-  width:100%;
-  margin-bottom:2em;
-  text-align:left;
-}
-
-.notice-board h2 {
-  text-align:center;
-  color:#b99232;
-  margin-bottom:1em;
-  text-shadow:0 0 4px rgba(212,175,55,0.7);
-}
-
-.notice-item {
-  border-bottom:1px solid rgba(160,120,40,0.3);
-  padding:0.5em 0;
-}
-
-.notice-item:last-child { border-bottom:none; }
-
-button {
-  background:#d4af37;
-  color:white;
-  border:none;
-  padding:0.75em 1.5em;
-  font-weight:bold;
-  border-radius:5px;
-  cursor:pointer;
-  box-shadow:0 0 10px rgba(212,175,55,0.8);
-  letter-spacing:0.08em;
-  margin-top:1em;
-}
-
-button:hover {
-  background:#b99232;
-  box-shadow:0 0 20px rgba(212,175,55,1);
-}
-
-footer {
-  margin-top:3em;
-  font-size:0.85rem;
-  color:#a98d45;
-}
+  body {
+    font-family: 'Pretendard', sans-serif;
+    background: #222;
+    color: #eee;
+    text-align: center;
+    padding-top: 50px;
+  }
+  .toggle-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+  }
+  label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  input[type="checkbox"] {
+    width: 50px;
+    height: 25px;
+    appearance: none;
+    background-color: #555;
+    border-radius: 25px;
+    position: relative;
+    outline: none;
+    transition: background 0.3s;
+  }
+  input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    top: 1px;
+    left: 1px;
+    background: white;
+    transition: transform 0.3s;
+  }
+  input[type="checkbox"]:checked {
+    background-color: #4caf50;
+  }
+  input[type="checkbox"]:checked::before {
+    transform: translateX(25px);
+  }
 </style>
 </head>
 <body>
-<header>Vatican City</header>
+  <h1>토글 시스템</h1>
+  <div class="toggle-container">
+    <label>
+      디스코드
+      <input type="checkbox" id="discord">
+    </label>
+    <label>
+      행복
+      <input type="checkbox" id="happy">
+    </label>
+    <label>
+      정신 피폐
+      <input type="checkbox" id="mental">
+    </label>
+  </div>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="recruit.html">Recruitment</a>
-</nav>
+  <script>
+    const discord = document.getElementById('discord');
+    const happy = document.getElementById('happy');
+    const mental = document.getElementById('mental');
 
-<div class="vatican-symbol">✝️</div>
+    function updateState() {
+      // 규칙 1: 디스코드와 정신 피폐가 모두 ON이면 행복은 OFF
+      if (discord.checked && mental.checked) {
+        happy.checked = false;
+      }
 
-<p class="description">
-Hello.
-<br> - DelTa -
-</p>
+      // 규칙 2: 행복을 ON으로 하면 나머지는 OFF
+      if (happy.checked) {
+        discord.checked = false;
+        mental.checked = false;
+      }
+    }
 
-<div class="notice-board">
-<h2>📜 공지 </h2>
-<div class="notice-item">2025.11.01 — 바티칸 테마 정착</div>
-<div class="notice-item">2025.10.31 — 프롤레타리아 테마로 변경</div>
-<div class="notice-item">2025.02.26 — 국세청 설립</div>
-</div>
-
-<a href="recruit.html"><button>Recruitment →</button></a>
-
-<footer>© 바티칸 시국 디스코드 커뮤니티</footer>
+    discord.addEventListener('change', updateState);
+    happy.addEventListener('change', updateState);
+    mental.addEventListener('change', updateState);
+  </script>
 </body>
 </html>
